@@ -1,0 +1,11 @@
+framework module GokwikUpi {
+  umbrella header "GokwikUpi.h"
+
+  export *
+  module * { export * }
+}
+
+module GokwikUpi.Swift {
+    header "GokwikUpi-Swift.h"
+    requires objc
+}

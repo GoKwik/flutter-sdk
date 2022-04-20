@@ -1,0 +1,26 @@
+name: flutter_gokwik_example
+description: Demonstrates how to use the flutter_gokwik plugin.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  upi_pay:
+  http:
+  shared_preferences:
+  flutter_gokwik:
+    path: ../
+  cupertino_icons:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true

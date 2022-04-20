@@ -1,0 +1,63 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.2 effective-4.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 4.2 -enforce-exclusivity=checked -O -module-name GokwikUpi
+import CoreImage
+import Foundation
+@_exported import GokwikUpi
+import Swift
+import SystemConfiguration
+import UIKit
+import WebKit
+import _Concurrency
+extension UIKit.UIDevice {
+  @_Concurrency.MainActor(unsafe) public static let modelName: Swift.String
+}
+public protocol GokwikPaymentStatusDelegate : AnyObject {
+  func gokwikPayment(status: Swift.Bool, data: [Swift.String : Any])
+}
+public protocol CheckoutStatusDelegate : AnyObject {
+  func checkOutCompleted(status: Swift.Bool, data: [Swift.String : Any])
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class GokwikCheckout : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public var checkoutStatusDelegate: GokwikUpi.GokwikPaymentStatusDelegate?
+  @_Concurrency.MainActor(unsafe) public init(production: Swift.Bool, delegate: GokwikUpi.GokwikPaymentStatusDelegate)
+  @_Concurrency.MainActor(unsafe) public func openCart(createData: [Swift.String : Any])
+  @objc deinit
+}
+extension GokwikUpi.GokwikCheckout : GokwikUpi.CheckoutStatusDelegate {
+  @_Concurrency.MainActor(unsafe) public func checkOutCompleted(status: Swift.Bool, data: [Swift.String : Any])
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class UpiCheckoutViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public var checkoutStatusDelegate: GokwikUpi.CheckoutStatusDelegate?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) public init(createData: [Swift.String : Any], production: Swift.Bool)
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class VerifyOTPViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public var checkoutStatusDelegate: GokwikUpi.CheckoutStatusDelegate?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) public init(createData: [Swift.String : Any], production: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func touchesBegan(_ touches: Swift.Set<UIKit.UITouch>, with event: UIKit.UIEvent?)
+  @objc deinit
+}
+extension GokwikUpi.VerifyOTPViewController : UIKit.UITextFieldDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidChangeSelection(_ textField: UIKit.UITextField)
+}
+@_hasMissingDesignatedInitializers public class InternetConnectionManager {
+  public static func isConnectedToNetwork() -> Swift.Bool
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class CustomeCheckout : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public var checkoutStatusDelegate: GokwikUpi.CheckoutStatusDelegate?
+  @_Concurrency.MainActor(unsafe) public init(createData: [Swift.String : Any], production: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @objc deinit
+}
+extension GokwikUpi.CustomeCheckout : WebKit.WKScriptMessageHandler {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func userContentController(_ userContentController: WebKit.WKUserContentController, didReceive message: WebKit.WKScriptMessage)
+}
